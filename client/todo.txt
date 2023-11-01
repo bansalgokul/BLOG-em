@@ -1,0 +1,10 @@
+header - 
+    when not logged - login, register
+    when logged - home (about trending)
+    user box - profile saved logout
+
+    
+add a save button in post card
+
+create a action bar for individual posts
+
