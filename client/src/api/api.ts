@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-	baseURL: "https://blog-em.onrender.com",
+	baseURL: "https://13.51.108.234:4000/",
 	timeout: 8000,
 });
 
