@@ -1,10 +1,10 @@
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import usePostStore from "../store/usePostStore";
-import z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { Button } from "../@/components/ui/button";
+import ReactQuill from "react-quill"
+import "react-quill/dist/quill.snow.css"
+import usePostStore from "../store/usePostStore"
+import z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { Button } from "../@/components/ui/button"
 import {
 	Form,
 	FormControl,
@@ -13,9 +13,9 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "../@/components/ui/form";
-import { Input } from "../@/components/ui/input";
-import TagsInput from "./TagsInput";
+} from "../@/components/ui/form"
+import { Input } from "../@/components/ui/input"
+import TagsInput from "./TagsInput"
 
 const modules = {
 	toolbar: [
@@ -30,7 +30,7 @@ const modules = {
 		["link", "image"],
 		["clean"],
 	],
-};
+}
 
 const formSchema = z.object({
 	title: z.string().min(2).max(50),
@@ -38,10 +38,10 @@ const formSchema = z.object({
 	description: z.string().min(2).max(50),
 	content: z.string(),
 	tags: z.array(z.string()).max(2),
-});
+})
 
 const PostEditor = () => {
-	const { createPost } = usePostStore();
+	const { createPost } = usePostStore()
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -52,19 +52,21 @@ const PostEditor = () => {
 			content: "Enter  your blog content",
 			tags: [],
 		},
-	});
+	})
 
 	function onSubmit(values: z.infer<typeof formSchema>) {
-		const formData = new FormData();
-		formData.append("title", values.title);
-		if (values.banner[0]) {
-			formData.append("banner", values.banner[0]);
+		const formData = new FormData()
+		formData.append("title", values.title)
+		if (values.banner) {
+			formData.append("banner", values.banner)
 		}
-		formData.append("description", values.description);
-		formData.append("content", values.content);
-		formData.append("tags", JSON.stringify(values.tags));
-		createPost(formData);
-		console.log(values);
+		formData.append("description", values.description)
+		formData.append("content", values.content)
+		formData.append("tags", JSON.stringify(values.tags))
+		createPost(formData)
+		for (const pair of formData.entries()) {
+			console.log(`${pair[0]}, ${pair[1]}`)
+		}
 	}
 
 	return (
@@ -134,7 +136,7 @@ const PostEditor = () => {
 										form.setValue(
 											"banner",
 											e.target.files?.[0]
-										);
+										)
 									}}
 								/>
 							</FormControl>
@@ -178,7 +180,7 @@ const PostEditor = () => {
 				</Button>
 			</form>
 		</Form>
-	);
-};
+	)
+}
 
-export default PostEditor;
+export default PostEditor

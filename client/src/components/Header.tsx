@@ -1,31 +1,31 @@
 // import { HiOutlineMenu } from "react-icons/hi";
-import { useEffect, useState } from "react";
-import postImage from "../assets/postImage.png";
-import { Link } from "react-router-dom";
-import { useDebounce } from "use-debounce";
-import usePostsStore from "../store/usePostsStore";
-import useUserStore from "../store/useUserStore";
-import { ArrowRight, FilePlus2, LogOut, User } from "lucide-react";
-import { Button, buttonVariants } from "../@/components/ui/button.tsx";
-import { cn } from "../@/lib/utils.ts";
-import { Input } from "../@/components/ui/input.tsx";
+import { useEffect, useState } from "react"
+import postImage from "../assets/postImage.png"
+import { Link } from "react-router-dom"
+import { useDebounce } from "use-debounce"
+import usePostsStore from "../store/usePostsStore"
+import useUserStore from "../store/useUserStore"
+import { ArrowRight, FilePlus2, LogOut, User } from "lucide-react"
+import { Button, buttonVariants } from "../@/components/ui/button.tsx"
+import { cn } from "../@/lib/utils.ts"
+import { Input } from "../@/components/ui/input.tsx"
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
-} from "../@/components/ui/dropdown-menu.tsx";
-import { DropdownMenuTrigger } from "../@/components/ui/dropdown-menu.tsx";
+} from "../@/components/ui/dropdown-menu.tsx"
+import { DropdownMenuTrigger } from "../@/components/ui/dropdown-menu.tsx"
 
 const Header = () => {
-	const { searchQuery, setSearchQuery } = usePostsStore();
-	const { user, logout } = useUserStore();
+	const { searchQuery, setSearchQuery } = usePostsStore()
+	const { user, logout } = useUserStore()
 
-	const [search, setSearch] = useState(searchQuery);
-	const [debounceSearch] = useDebounce(search, 1000);
+	const [search, setSearch] = useState(searchQuery)
+	const [debounceSearch] = useDebounce(search, 1000)
 
 	useEffect(() => {
-		setSearchQuery(debounceSearch);
-	}, [debounceSearch, setSearchQuery]);
+		setSearchQuery(debounceSearch)
+	}, [debounceSearch, setSearchQuery])
 
 	return (
 		<header className="z-20 h-20 fixed top-0 w-full bg-background">
@@ -80,7 +80,7 @@ const Header = () => {
 								</Button>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent className="w-32 rounded-lg">
-								<DropdownMenuItem>
+								{/* <DropdownMenuItem>
 									<Link
 										to={"/profile"}
 										className={cn(
@@ -93,7 +93,7 @@ const Header = () => {
 										<User className="mr-2 h-4 w-4" />{" "}
 										<span>Profile</span>
 									</Link>
-								</DropdownMenuItem>
+								</DropdownMenuItem> */}
 								<DropdownMenuItem>
 									<Link
 										to={"/post/new"}
@@ -171,7 +171,7 @@ const Header = () => {
 				</div>
 			</div>
 		</header>
-	);
-};
+	)
+}
 
-export default Header;
+export default Header
